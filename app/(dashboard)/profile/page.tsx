@@ -74,7 +74,8 @@ export default function ProfilePage() {
       body: formData,
     });
 
-    let data: Record<string, string | number> = {};
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let data: Record<string, any> = {};
     try {
       data = await res.json();
     } catch {
