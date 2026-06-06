@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  profile             CareerProfile?
+  assessments         Assessment[]
+  roadmaps            CareerRoadmap[]
+  goals               Goal[]
+  coachConversations  CoachConversation[]
+  mentorConversations MentorConversation[]
+}
+
+model CareerProfile {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentRole     String
+  industry        String
+  yearsExperience Int
+  leadershipExp   String
+  careerGoals     String
+  desiredRole     String
+  language        String   @default("English")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Assessment {
+  id        String            @id @default(cuid())
+  userId    String
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String            @default("leadership")
+  answers   Json
+  result    AssessmentResult?
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+model AssessmentResult {
+  id                  String     @id @default(cuid())
+  assessmentId        String     @unique
+  assessment          Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  leadershipScore     Int
+  promotionReadiness  String
+  strengths           String[]
+  growthAreas         String[]
+  recommendedNextRole String
+  summary             String
+  createdAt           DateTime   @default(now())
+}
+
+model CareerRoadmap {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentSituation   String
+  threeMonthPlan     String
+  sixMonthPlan       String
+  twelveMonthPlan    String
+  skillsToDevelop    String[]
+  networkingStrategy String
+  promotionStrategy  String
+  successMetrics     String[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Goal {
+  id          String         @id @default(cuid())
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  dueDate     DateTime?
+  status      String         @default("active")
+  progress    GoalProgress[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model GoalProgress {
+  id        String   @id @default(cuid())
+  goalId    String
+  goal      Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  note      String
+  createdAt DateTime @default(now())
+}
+
+model CoachConversation {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MentorConversation {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  persona   String
+  messages  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

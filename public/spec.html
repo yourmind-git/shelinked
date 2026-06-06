@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SheLinked — MVP Build Specification</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fafafa; color: #18181b; line-height: 1.6; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+    header { border-bottom: 1px solid #e4e4e7; padding-bottom: 32px; margin-bottom: 40px; }
+    .logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .logo-mark { width: 36px; height: 36px; border-radius: 8px; background: #7C3AED; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px; }
+    h1 { font-size: 28px; font-weight: 700; color: #18181b; }
+    .subtitle { color: #71717a; font-size: 16px; margin-top: 4px; }
+    .badge { display: inline-block; background: #7C3AED15; color: #7C3AED; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; margin-top: 12px; }
+    h2 { font-size: 18px; font-weight: 700; color: #18181b; margin-top: 36px; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid #7C3AED; display: inline-block; }
+    h3 { font-size: 15px; font-weight: 600; color: #3f3f46; margin-top: 20px; margin-bottom: 6px; }
+    p { color: #52525b; margin-bottom: 10px; }
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    li { color: #52525b; margin-bottom: 4px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin: 20px 0; }
+    .feature-card { background: white; border: 1px solid #e4e4e7; border-radius: 12px; padding: 18px; }
+    .feature-card h3 { color: #7C3AED; margin-top: 0; font-size: 14px; }
+    .feature-card p { font-size: 13px; margin: 0; }
+    .stack { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .tag { background: #f4f4f5; color: #3f3f46; font-size: 12px; padding: 4px 10px; border-radius: 6px; font-weight: 500; }
+    .principle { background: white; border-left: 3px solid #7C3AED; padding: 12px 16px; margin-bottom: 8px; border-radius: 0 8px 8px 0; }
+    .principle p { margin: 0; font-size: 14px; }
+    blockquote { background: #7C3AED08; border-left: 3px solid #7C3AED; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+    blockquote p { color: #3f3f46; margin: 0; font-style: italic; }
+    code { background: #f4f4f5; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 13px; color: #7C3AED; }
+    .out-of-scope { background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .out-of-scope li { color: #dc2626; }
+    footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid #e4e4e7; text-align: center; color: #a1a1aa; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="logo-mark">S</div>
+        <span style="font-size:20px;font-weight:700">SheLinked</span>
+      </div>
+      <h1>MVP Build Specification</h1>
+      <p class="subtitle">AI-powered career acceleration platform for women</p>
+      <span class="badge">Version 1.0 — MVP</span>
+    </header>
+
+    <h2>North Star</h2>
+    <blockquote>
+      <p>SheLinked helps women accelerate their careers and become stronger leaders, product managers, executives, consultants, and entrepreneurs through personalized assessments, coaching, mentoring, and career roadmaps.</p>
+    </blockquote>
+    <p><strong>Primary Goal:</strong> Help users make measurable career progress.</p>
+    <p><strong>Core Principle:</strong> When making trade-offs, optimize for user outcomes and coaching quality, not feature quantity.</p>
+
+    <h2>Target Users</h2>
+    <div class="stack">
+      <span class="tag">Future Leaders</span><span class="tag">Team Leads</span><span class="tag">Managers</span>
+      <span class="tag">Scrum Masters</span><span class="tag">Product Owners</span><span class="tag">Product Managers</span>
+      <span class="tag">Consultants</span><span class="tag">Entrepreneurs</span>
+    </div>
+
+    <h2>MVP Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card"><h3>1. Authentication</h3><p>Sign up, sign in, sign out. Protected routes, session persistence, mobile responsive.</p></div>
+      <div class="feature-card"><h3>2. Career Profile</h3><p>Collect role, industry, experience, goals, desired role. Save to database, editable, powers all AI features.</p></div>
+      <div class="feature-card"><h3>3. Leadership Assessment</h3><p>10-question questionnaire → score, promotion readiness, strengths, growth areas, recommended role.</p></div>
+      <div class="feature-card"><h3>4. AI Career Coach</h3><p>Conversational coach using profile + assessment context. Identifies obstacles, recommends actions, creates accountability.</p></div>
+      <div class="feature-card"><h3>5. Career Roadmap</h3><p>Generates 3/6/12-month plans, skills to develop, networking strategy, promotion strategy, success metrics.</p></div>
+      <div class="feature-card"><h3>6. AI Mentor</h3><p>Four personas: Executive Leader, Product Leader, Startup Founder, Agile Coach. Personalized, consistent, context-aware.</p></div>
+    </div>
+
+    <h2>Explicitly Out of Scope</h2>
+    <div class="out-of-scope">
+      <ul>
+        <li>Community feeds / forums</li><li>Social networking</li><li>Event systems</li>
+        <li>Corporate dashboards</li><li>Talent marketplace</li>
+        <li>Learning management system</li><li>Video / course platform</li>
+      </ul>
+      <p style="margin-top:8px;font-size:13px;color:#b91c1c">These will later be integrated through <strong>HyperMind</strong>.</p>
+    </div>
+
+    <h2>Product Principles</h2>
+    <div class="principle"><p>📱 Always mobile first. Desktop second.</p></div>
+    <div class="principle"><p>🤖 Always AI first.</p></div>
+    <div class="principle"><p>🎯 Every page should answer: <em>"What should the user do next?"</em></p></div>
+    <div class="principle"><p>⚡ Prefer action over information. Coaching over content. Simplicity over complexity.</p></div>
+
+    <h2>Tech Stack</h2>
+    <h3>Frontend</h3>
+    <div class="stack"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">shadcn/ui</span></div>
+    <h3>Backend</h3>
+    <div class="stack"><span class="tag">Next.js API Routes</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span></div>
+    <h3>AI</h3>
+    <div class="stack"><span class="tag">Anthropic Claude (claude-opus-4-6)</span></div>
+    <h3>Hosting</h3>
+    <div class="stack"><span class="tag">Vercel</span></div>
+
+    <h2>Definition of Done</h2>
+    <p>A feature is done only when:</p>
+    <ul>
+      <li>Mobile responsive + Desktop responsive</li>
+      <li>Database persistence works</li>
+      <li>Error handling exists</li>
+      <li>Loading states exist</li>
+      <li>Claude integration works</li>
+      <li>No TypeScript errors / No console errors</li>
+      <li>Manual testing completed</li>
+    </ul>
+
+    <h2>Future Integrations (placeholder)</h2>
+    <p>Architecture is prepared for <strong>HyperMind</strong> integration:</p>
+    <div class="stack">
+      <span class="tag">Community</span><span class="tag">Forums</span><span class="tag">Events</span>
+      <span class="tag">Networking</span><span class="tag">Marketplace</span><span class="tag">Corporate Dashboards</span>
+    </div>
+
+    <footer>
+      <p>SheLinked MVP Specification — Built for women who lead.</p>
+    </footer>
+  </div>
+</body>
+</html>
