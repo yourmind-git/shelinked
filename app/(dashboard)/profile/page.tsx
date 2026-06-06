@@ -90,14 +90,15 @@ export default function ProfilePage() {
       return;
     }
 
-    setForm({
+    setForm((prev) => ({
+      ...prev,
       currentRole: data.currentRole || "",
       industry: INDUSTRIES.includes(data.industry) ? data.industry : "",
       yearsExperience: data.yearsExperience ? String(data.yearsExperience) : "",
       leadershipExp: LEADERSHIP_EXP.includes(data.leadershipExp) ? data.leadershipExp : "",
       desiredRole: data.desiredRole || "",
       careerGoals: data.careerGoals || "",
-    });
+    }));
     setCvSuccess(true);
   }
 
