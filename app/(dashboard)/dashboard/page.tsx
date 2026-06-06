@@ -12,18 +12,23 @@ export default async function DashboardPage() {
   if (!session?.user?.id) redirect("/login");
   const userId = session.user.id;
 
-  const [profile, latestAssessment, latestRoadmap] = await Promise.all([
-    prisma.careerProfile.findUnique({ where: { userId } }),
-    prisma.assessment.findFirst({
-      where: { userId },
-      include: { result: true },
-      orderBy: { createdAt: "desc" },
-    }),
-    prisma.careerRoadmap.findFirst({
-      where: { userId },
-      orderBy: { createdAt: "desc" },
-    }),
-  ]);
+  let profile = null, latestAssessment = null, latestRoadmap = null;
+  try {
+    [profile, latestAssessment, latestRoadmap] = await Promise.all([
+      prisma.careerProfile.findUnique({ where: { userId } }),
+      prisma.assessment.findFirst({
+        where: { userId },
+        include: { result: true },
+        orderBy: { createdAt: "desc" },
+      }),
+      prisma.careerRoadmap.findFirst({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+      }),
+    ]);
+  } catch (e) {
+    console.error("Dashboard DB error:", e);
+  }
 
   const steps = [
     {
