@@ -10,7 +10,7 @@ const loginSchema = z.object({
 });
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET ?? "shelinked-temporary-secret-replace-me",
   providers: [
     Credentials({
       async authorize(credentials) {
